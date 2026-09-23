@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Himarghya Das — Developer Blog &amp; Systems Journal</title>
+    <link>https://himarghya.dev/blog</link>
+    <description>Notes from building, breaking, debugging and learning backend systems, C++, and web applications.</description>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 23 Sep 2026 00:00:00 GMT</lastBuildDate>
+    <atom:link href="https://himarghya.dev/rss.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>How I Structure My Node.js Projects</title>
+      <link>https://himarghya.dev/blog/how-i-structure-my-nodejs-projects</link>
+      <guid>https://himarghya.dev/blog/how-i-structure-my-nodejs-projects</guid>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 GMT</pubDate>
+      <description>A practical approach to separating routes, controllers, services, and repositories without over-engineering.</description>
+    </item>
+
+    <item>
+      <title>Designing Reliable Job Queues with Redis &amp; Leases</title>
+      <link>https://himarghya.dev/blog/designing-reliable-job-queues-with-redis</link>
+      <guid>https://himarghya.dev/blog/designing-reliable-job-queues-with-redis</guid>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 GMT</pubDate>
+      <description>How to avoid duplicate processing, handle worker crashes, and ensure strict idempotency in distributed job systems.</description>
+    </item>
+
+    <item>
+      <title>Understanding Move Semantics &amp; Memory in Modern C++</title>
+      <link>https://himarghya.dev/blog/understanding-move-semantics-memory-modern-cpp</link>
+      <guid>https://himarghya.dev/blog/understanding-move-semantics-memory-modern-cpp</guid>
+      <pubDate>Fri, 28 Aug 2026 00:00:00 GMT</pubDate>
+      <description>Deep diving into rvalue references, std::move, RAII, and zero-cost abstractions without getting lost in compiler jargon.</description>
+    </item>
+
+    <item>
+      <title>PostgreSQL Indexing: When B-Trees Aren&apos;t Enough</title>
+      <link>https://himarghya.dev/blog/postgresql-indexing-beyond-btree</link>
+      <guid>https://himarghya.dev/blog/postgresql-indexing-beyond-btree</guid>
+      <pubDate>Sat, 15 Aug 2026 00:00:00 GMT</pubDate>
+      <description>A practical guide to BRIN, GIN, GiST, and partial indexes for high-throughput timeseries and spatial datasets.</description>
+    </item>
+
+    <item>
+      <title>Building Resilient Systems: What I&apos;ve Learned About Failure Modes</title>
+      <link>https://himarghya.dev/blog/building-resilient-systems-failure-modes</link>
+      <guid>https://himarghya.dev/blog/building-resilient-systems-failure-modes</guid>
+      <pubDate>Thu, 30 Jul 2026 00:00:00 GMT</pubDate>
+      <description>Why distributed systems always fail in unexpected ways, and mental models for designing software that degrades gracefully.</description>
+    </item>
+  </channel>
+</rss>
