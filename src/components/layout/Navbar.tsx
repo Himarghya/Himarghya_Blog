@@ -59,7 +59,7 @@ export const Navbar: React.FC = () => {
       <header
         className={`sticky top-0 z-40 w-full transition-all duration-300 ${
           isScrolled
-            ? 'backdrop-blur-xl bg-white/70 dark:bg-[#09090B]/70 border-b border-zinc-200/60 dark:border-white/10 shadow-sm'
+            ? 'backdrop-blur-xl bg-white/80 dark:bg-[#09090B]/75 border-b border-slate-200/90 dark:border-white/10 shadow-xs'
             : 'bg-transparent border-b border-transparent'
         }`}
       >
@@ -67,30 +67,30 @@ export const Navbar: React.FC = () => {
           {/* Logo / Brand */}
           <Link
             to="/"
-            className="group flex items-center gap-2.5 text-zinc-900 dark:text-zinc-100 font-semibold tracking-tight transition-transform hover:opacity-90"
+            className="group flex items-center gap-2.5 text-slate-900 dark:text-zinc-100 font-semibold tracking-tight transition-transform hover:opacity-90"
           >
-            <div className="w-8 h-8 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 flex items-center justify-center font-mono text-sm font-bold shadow-sm transition-transform group-hover:scale-105">
+            <div className="w-8 h-8 rounded-lg bg-slate-900 dark:bg-zinc-100 text-white dark:text-zinc-900 flex items-center justify-center font-mono text-sm font-bold shadow-sm transition-transform group-hover:scale-105">
               {profile.initials}
             </div>
             <div className="flex flex-col">
-              <span className="text-sm sm:text-base font-semibold text-zinc-900 dark:text-zinc-100">
+              <span className="text-sm sm:text-base font-bold text-slate-900 dark:text-zinc-100">
                 {profile.name}
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation Links (Glassmorphism Capsule) */}
-          <nav className="hidden md:flex items-center gap-1 p-1 rounded-full backdrop-blur-md bg-zinc-100/70 dark:bg-zinc-900/60 border border-zinc-200/60 dark:border-white/10 shadow-xs">
+          {/* Desktop Navigation Links (Capsule Navbar) */}
+          <nav className="hidden md:flex items-center gap-1 p-1.5 rounded-full backdrop-blur-xl bg-white/90 dark:bg-zinc-900/60 border border-slate-200/90 dark:border-white/10 shadow-[0_1px_3px_rgba(0,0,0,0.04),0_6px_16px_rgba(0,0,0,0.03)]">
             {navLinks.map((link) => {
               const active = isActive(link.path);
               return (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`px-3 py-1.5 text-xs font-medium rounded-full transition-all ${
+                  className={`px-3.5 py-1 text-xs rounded-full transition-all ${
                     active
-                      ? 'text-zinc-900 dark:text-zinc-100 font-semibold bg-white dark:bg-zinc-800 shadow-xs'
-                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-white/50 dark:hover:bg-zinc-800/40'
+                      ? 'text-white dark:text-zinc-900 font-semibold bg-slate-900 dark:bg-zinc-100 shadow-xs'
+                      : 'text-slate-600 dark:text-zinc-400 hover:text-slate-950 dark:hover:text-zinc-100 hover:bg-slate-100/70 dark:hover:bg-zinc-800/40'
                   }`}
                 >
                   {link.name}
@@ -105,11 +105,11 @@ export const Navbar: React.FC = () => {
             <button
               onClick={() => setSearchOpen(true)}
               aria-label="Search"
-              className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-zinc-600 dark:text-zinc-400 backdrop-blur-md bg-white/60 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg border border-zinc-200/80 dark:border-white/10 transition-colors shadow-xs"
+              className="flex items-center gap-2 px-3 py-1.5 text-xs text-slate-600 dark:text-zinc-400 backdrop-blur-xl bg-white/90 dark:bg-zinc-900/60 hover:bg-slate-100 dark:hover:bg-zinc-800 rounded-xl border border-slate-200/90 dark:border-white/10 transition-colors shadow-2xs font-medium"
             >
-              <Search className="w-3.5 h-3.5" />
+              <Search className="w-3.5 h-3.5 text-slate-500 dark:text-zinc-400" />
               <span className="hidden sm:inline">Search</span>
-              <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono bg-zinc-100 dark:bg-zinc-800 rounded border border-zinc-200 dark:border-zinc-700">
+              <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono bg-slate-100 dark:bg-zinc-800 rounded border border-slate-200 dark:border-zinc-700 text-slate-500 dark:text-zinc-400">
                 ⌘K
               </kbd>
             </button>
@@ -118,12 +118,12 @@ export const Navbar: React.FC = () => {
             <button
               onClick={toggleTheme}
               aria-label="Toggle theme"
-              className="p-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 backdrop-blur-md bg-white/60 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg border border-zinc-200/80 dark:border-white/10 transition-colors"
+              className="p-2 text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 backdrop-blur-xl bg-white/90 dark:bg-zinc-900/60 hover:bg-slate-100 dark:hover:bg-zinc-800 rounded-xl border border-slate-200/90 dark:border-white/10 transition-colors shadow-2xs"
             >
               {resolvedTheme === 'dark' ? (
                 <Sun className="w-4 h-4 text-zinc-300" />
               ) : (
-                <Moon className="w-4 h-4 text-zinc-700" />
+                <Moon className="w-4 h-4 text-slate-700" />
               )}
             </button>
 
@@ -133,7 +133,7 @@ export const Navbar: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub Profile"
-              className="p-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 backdrop-blur-md bg-white/60 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg border border-zinc-200/80 dark:border-white/10 transition-colors"
+              className="p-2 text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 backdrop-blur-xl bg-white/90 dark:bg-zinc-900/60 hover:bg-slate-100 dark:hover:bg-zinc-800 rounded-xl border border-slate-200/90 dark:border-white/10 transition-colors shadow-2xs"
             >
               <Github className="w-4 h-4" />
             </a>
@@ -143,9 +143,9 @@ export const Navbar: React.FC = () => {
               href={socialLinks.resume}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white backdrop-blur-md bg-white/60 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg border border-zinc-200/80 dark:border-white/10 transition-colors"
+              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-800 dark:text-zinc-200 hover:text-slate-950 dark:hover:text-white backdrop-blur-xl bg-white/90 dark:bg-zinc-900/60 hover:bg-slate-100 dark:hover:bg-zinc-800 rounded-xl border border-slate-200/90 dark:border-white/10 transition-colors shadow-2xs"
             >
-              <FileText className="w-3.5 h-3.5" />
+              <FileText className="w-3.5 h-3.5 text-slate-700 dark:text-zinc-300" />
               <span>Resume</span>
             </a>
 
@@ -153,7 +153,7 @@ export const Navbar: React.FC = () => {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Open menu"
-              className="p-2 md:hidden text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-800"
+              className="p-2 md:hidden text-slate-700 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-zinc-800 rounded-xl border border-slate-200 dark:border-zinc-800 shadow-2xs"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -162,7 +162,7 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Menu Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden px-4 pt-2 pb-6 backdrop-blur-2xl bg-white/90 dark:bg-[#09090B]/90 border-b border-zinc-200/80 dark:border-white/10 animate-in slide-in-from-top duration-200">
+          <div className="md:hidden px-4 pt-2 pb-6 backdrop-blur-2xl bg-white/95 dark:bg-[#09090B]/95 border-b border-slate-200/90 dark:border-white/10 animate-in slide-in-from-top duration-200 shadow-lg">
             <div className="flex flex-col gap-1">
               {navLinks.map((link) => {
                 const active = isActive(link.path);
@@ -170,10 +170,10 @@ export const Navbar: React.FC = () => {
                   <Link
                     key={link.path}
                     to={link.path}
-                    className={`px-3 py-2.5 text-sm rounded-lg transition-colors ${
+                    className={`px-3.5 py-2.5 text-sm rounded-xl transition-colors ${
                       active
-                        ? 'text-zinc-900 dark:text-zinc-100 font-semibold bg-zinc-200/70 dark:bg-zinc-800/80'
-                        : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100/50 dark:hover:bg-zinc-800/40'
+                        ? 'text-white dark:text-zinc-900 font-semibold bg-slate-900 dark:bg-zinc-100'
+                        : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-100 hover:bg-slate-100/70 dark:hover:bg-zinc-800/40'
                     }`}
                   >
                     {link.name}
@@ -181,12 +181,12 @@ export const Navbar: React.FC = () => {
                 );
               })}
 
-              <div className="pt-3 mt-2 border-t border-zinc-200/60 dark:border-zinc-800 flex items-center justify-between">
+              <div className="pt-3 mt-2 border-t border-slate-200/80 dark:border-zinc-800 flex items-center justify-between">
                 <a
                   href={socialLinks.resume}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-xs text-zinc-800 dark:text-zinc-200 font-medium px-3 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-700"
+                  className="flex items-center gap-1.5 text-xs text-slate-800 dark:text-zinc-200 font-semibold px-3.5 py-2 bg-slate-100 dark:bg-zinc-800 rounded-xl border border-slate-200 dark:border-zinc-700"
                 >
                   <FileText className="w-3.5 h-3.5" />
                   <span>Resume</span>
@@ -195,7 +195,7 @@ export const Navbar: React.FC = () => {
                   href={socialLinks.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-xs text-zinc-600 dark:text-zinc-400 px-3 py-2 hover:text-zinc-900 dark:hover:text-white"
+                  className="flex items-center gap-1.5 text-xs text-slate-600 dark:text-zinc-400 px-3 py-2 hover:text-slate-900 dark:hover:text-white font-medium"
                 >
                   <Github className="w-3.5 h-3.5" />
                   <span>GitHub</span>

@@ -22,28 +22,28 @@ export const Blog: React.FC = () => {
   return (
     <div className="max-w-3xl mx-auto space-y-10 pb-16 pt-6">
       {/* Header */}
-      <div className="space-y-3 border-b border-zinc-200/60 dark:border-zinc-800/60 pb-6">
-        <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
+      <div className="space-y-3 border-b border-slate-200/80 dark:border-zinc-800/80 pb-6">
+        <div className="flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-wider text-slate-500 dark:text-zinc-400">
           <BookOpen className="w-4 h-4" />
           <span>DEVELOPER JOURNAL & NOTES</span>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50">
+        <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-zinc-50">
           Writing
         </h1>
-        <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 leading-relaxed">
+        <p className="text-sm sm:text-base text-slate-600 dark:text-zinc-400 leading-relaxed">
           Things I&apos;ve learned while building software, solving problems, and figuring things out. Practical notes on backend architecture, systems, databases, and C++.
         </p>
 
         {/* Search and Category Filter */}
         <div className="pt-4 space-y-3">
           <div className="relative">
-            <Search className="w-4 h-4 text-zinc-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               placeholder="Search articles by title, keyword, or technology..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2.5 text-xs sm:text-sm rounded-xl border border-zinc-200/80 dark:border-white/10 backdrop-blur-md bg-white/60 dark:bg-zinc-900/50 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-zinc-400 dark:focus:border-white/20 shadow-xs"
+              className="w-full pl-10 pr-4 py-3 text-xs sm:text-sm rounded-2xl border border-slate-300 dark:border-white/10 bg-white dark:bg-zinc-900/60 text-slate-900 dark:text-zinc-100 placeholder-slate-400 focus:outline-none focus:border-slate-800 dark:focus:border-white/30 focus:ring-2 focus:ring-slate-900/5 shadow-2xs transition-all"
             />
           </div>
 
@@ -52,10 +52,10 @@ export const Blog: React.FC = () => {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1 text-xs font-mono rounded-xl backdrop-blur-md transition-all ${
+                className={`px-3.5 py-1.5 text-xs font-mono rounded-xl transition-all ${
                   selectedCategory === cat
-                    ? 'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-semibold shadow-xs'
-                    : 'bg-white/60 dark:bg-zinc-900/60 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 border border-zinc-200/60 dark:border-white/5'
+                    ? 'bg-slate-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-semibold shadow-xs'
+                    : 'glass-card text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200'
                 }`}
               >
                 {cat}
@@ -66,16 +66,16 @@ export const Blog: React.FC = () => {
       </div>
 
       {/* Articles Listing */}
-      <div className="divide-y divide-zinc-200/60 dark:divide-zinc-800/60">
+      <div className="divide-y divide-slate-200/80 dark:divide-zinc-800/80">
         {filteredPosts.length === 0 ? (
-          <div className="py-12 text-center text-zinc-500 dark:text-zinc-400 text-sm">
+          <div className="py-12 text-center text-slate-500 dark:text-zinc-400 text-sm">
             No articles found matching your criteria.
           </div>
         ) : (
           filteredPosts.map((post: BlogPost) => (
             <article key={post.slug} className="py-8 first:pt-2 last:pb-2 space-y-3">
               {/* Meta information */}
-              <div className="flex items-center gap-3 text-xs font-mono text-zinc-500 dark:text-zinc-400">
+              <div className="flex items-center gap-3 text-xs font-mono text-slate-500 dark:text-zinc-400">
                 <span className="flex items-center gap-1">
                   <Calendar className="w-3 h-3" /> {post.date}
                 </span>
@@ -84,17 +84,17 @@ export const Blog: React.FC = () => {
                   <Clock className="w-3 h-3" /> {post.readingTime}
                 </span>
                 <span>•</span>
-                <span className="px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium border border-zinc-200/40 dark:border-zinc-700/40">
+                <span className="px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-zinc-800 text-slate-700 dark:text-zinc-300 font-semibold border border-slate-200/80 dark:border-zinc-700/40">
                   {post.category}
                 </span>
               </div>
 
               {/* Title & Excerpt */}
               <Link to={`/blog/${post.slug}`} className="block group space-y-1.5">
-                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-zinc-100 group-hover:text-slate-600 dark:group-hover:text-zinc-300 transition-colors">
                   {post.title}
                 </h2>
-                <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2">
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-zinc-400 leading-relaxed line-clamp-2">
                   {post.excerpt}
                 </p>
               </Link>
@@ -104,9 +104,9 @@ export const Blog: React.FC = () => {
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-mono rounded bg-zinc-100/80 dark:bg-zinc-800/60 text-zinc-500 dark:text-zinc-400 border border-zinc-200/40 dark:border-zinc-700/40"
+                    className="inline-flex items-center gap-1 px-2.5 py-0.5 text-[10px] font-mono rounded-md bg-slate-100 dark:bg-zinc-800 text-slate-600 dark:text-zinc-400 border border-slate-200/70 dark:border-zinc-700/40 font-medium"
                   >
-                    <Tag className="w-2.5 h-2.5" />
+                    <Tag className="w-2.5 h-2.5 text-slate-400" />
                     {tag}
                   </span>
                 ))}

@@ -23,12 +23,18 @@ export const App: React.FC = () => {
     <ThemeProvider>
       <Router>
         <ScrollToTop />
-        <div className="relative min-h-screen flex flex-col bg-[#FAFAFA] dark:bg-[#09090B] text-[#111111] dark:text-[#F4F4F5] font-sans transition-colors duration-200 selection:bg-zinc-800 selection:text-white dark:selection:bg-zinc-200 dark:selection:text-zinc-900 overflow-x-hidden">
-          {/* Subtle Ambient Monochrome Glass Depth Gradients (No green/blue lights) */}
+        <div className="relative min-h-screen flex flex-col bg-[#F8FAFC] dark:bg-[#09090B] text-[#0F172A] dark:text-[#F4F4F5] font-sans transition-colors duration-200 selection:bg-zinc-900 selection:text-white dark:selection:bg-zinc-100 dark:selection:text-zinc-900 overflow-x-hidden">
+          {/* Subtle Ambient Depth Layer for Glassmorphism Refraction */}
           <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-            <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-zinc-200/40 dark:bg-zinc-800/15 rounded-full blur-3xl" />
-            <div className="absolute top-[45%] -right-40 w-[600px] h-[500px] bg-zinc-200/30 dark:bg-zinc-800/10 rounded-full blur-3xl" />
-            <div className="absolute -bottom-40 -left-40 w-[600px] h-[500px] bg-zinc-200/30 dark:bg-zinc-800/10 rounded-full blur-3xl" />
+            {/* Light Mode Gradients */}
+            <div className="dark:hidden absolute -top-32 left-1/2 -translate-x-1/2 w-[850px] h-[450px] bg-gradient-to-b from-slate-200/60 to-transparent rounded-full blur-3xl opacity-70" />
+            <div className="dark:hidden absolute top-[35%] -right-40 w-[600px] h-[550px] bg-gradient-to-br from-slate-200/50 to-transparent rounded-full blur-3xl opacity-60" />
+            <div className="dark:hidden absolute top-[70%] -left-40 w-[600px] h-[550px] bg-gradient-to-tr from-slate-200/50 to-transparent rounded-full blur-3xl opacity-60" />
+
+            {/* Dark Mode Gradients */}
+            <div className="hidden dark:block absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-zinc-800/15 rounded-full blur-3xl" />
+            <div className="hidden dark:block absolute top-[45%] -right-40 w-[600px] h-[500px] bg-zinc-800/10 rounded-full blur-3xl" />
+            <div className="hidden dark:block absolute -bottom-40 -left-40 w-[600px] h-[500px] bg-zinc-800/10 rounded-full blur-3xl" />
           </div>
 
           {/* Top Sticky Navbar */}
