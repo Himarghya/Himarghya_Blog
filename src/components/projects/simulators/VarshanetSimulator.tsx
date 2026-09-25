@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Activity, ShieldCheck, Filter, RefreshCw } from 'lucide-react';
+import { Activity, Filter } from 'lucide-react';
 
 interface SensorReading {
   timestamp: string;
@@ -44,22 +44,22 @@ export const VarshanetSimulator: React.FC = () => {
     : readings;
 
   return (
-    <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-[#0F0F11] text-zinc-100 p-4 sm:p-5 font-mono text-xs space-y-4">
+    <div className="rounded-2xl border border-zinc-200/80 dark:border-white/10 backdrop-blur-xl bg-zinc-950/80 text-zinc-100 p-4 sm:p-5 font-mono text-xs space-y-4 shadow-xl">
       {/* Title & Controls */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-800/80 pb-3">
         <div className="flex items-center gap-2">
-          <Activity className="w-4 h-4 text-cyan-400" />
+          <Activity className="w-4 h-4 text-zinc-400" />
           <span className="font-bold text-zinc-100 tracking-wide">VARSHANET Telemetry & Anomaly Stream</span>
-          <span className="px-1.5 py-0.2 bg-cyan-500/20 text-cyan-400 text-[10px] rounded">3-SIGMA FILTER</span>
+          <span className="px-1.5 py-0.5 bg-zinc-800 text-zinc-300 text-[10px] rounded border border-zinc-700">3-SIGMA FILTER</span>
         </div>
 
         <div className="flex items-center gap-2">
           <button
             onClick={() => setFilterAnomalies(!filterAnomalies)}
-            className={`flex items-center gap-1.5 px-2.5 py-1 rounded text-[11px] font-medium transition-colors ${
+            className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[11px] font-medium transition-colors border ${
               filterAnomalies
-                ? 'bg-cyan-600 text-white'
-                : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700'
+                ? 'bg-zinc-100 text-zinc-900 border-zinc-200'
+                : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700 border-zinc-700'
             }`}
           >
             <Filter className="w-3 h-3" />
@@ -82,38 +82,32 @@ export const VarshanetSimulator: React.FC = () => {
           {displayedReadings.map((r, idx) => (
             <div
               key={idx}
-              className={`grid grid-cols-5 items-center p-2 rounded border text-[11px] transition-all ${
+              className={`grid grid-cols-5 items-center p-2 rounded-xl border text-[11px] transition-all ${
                 r.isAnomaly
-                  ? 'bg-red-950/30 border-red-800/60 text-red-300'
-                  : 'bg-[#16161A] border-zinc-800/80 text-zinc-200'
+                  ? 'bg-zinc-900/80 border-zinc-700 text-zinc-400'
+                  : 'bg-zinc-900/40 border-zinc-800/80 text-zinc-200'
               }`}
             >
               <span className="text-zinc-400">{r.timestamp}</span>
               <span className="font-semibold">{r.station}</span>
-              <span className={r.isAnomaly ? 'font-bold text-red-400' : 'text-emerald-400'}>
+              <span className={r.isAnomaly ? 'text-zinc-400 font-mono' : 'text-zinc-100 font-mono'}>
                 {r.tempC} °C
               </span>
               <span>{r.humidity}%</span>
               <div>
                 {r.isAnomaly ? (
-                  <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-red-500/20 text-red-400">
+                  <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-zinc-800 text-zinc-400 border border-zinc-700">
                     ANOMALY (DROPPED)
                   </span>
                 ) : (
-                  <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/20 text-emerald-400 flex items-center gap-1 w-fit">
-                    <ShieldCheck className="w-3 h-3" /> VALID
+                  <span className="px-1.5 py-0.5 rounded text-[10px] bg-zinc-800/60 text-zinc-300 border border-zinc-700/60">
+                    VALIDATED (STORED)
                   </span>
                 )}
               </div>
             </div>
           ))}
         </div>
-      </div>
-
-      {/* Summary Footer */}
-      <div className="p-2.5 rounded bg-black/50 border border-zinc-800 text-[11px] text-zinc-400 flex items-center justify-between">
-        <span>PostgreSQL Hypertables batch insertion latency: <strong>4.2ms</strong></span>
-        <span className="text-cyan-400">Continuous 1-hour rollup: ENABLED</span>
       </div>
     </div>
   );

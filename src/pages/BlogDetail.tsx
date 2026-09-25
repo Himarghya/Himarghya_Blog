@@ -8,10 +8,9 @@ import {
   Check,
   Tag,
   ArrowRight,
-  Layers,
-  Sparkles
+  Layers
 } from 'lucide-react';
-import { blogPosts, BlogPost } from '../data/blog';
+import { blogPosts } from '../data/blog';
 import { projects } from '../data/projects';
 import { profile } from '../data/profile';
 import { MarkdownRenderer } from '../components/blog/MarkdownRenderer';
@@ -54,10 +53,10 @@ export const BlogDetail: React.FC = () => {
       </Link>
 
       {/* Article Header */}
-      <div className="space-y-4 border-b border-zinc-200 dark:border-zinc-800 pb-8">
+      <div className="space-y-4 border-b border-zinc-200/60 dark:border-zinc-800/60 pb-8">
         <div className="flex items-center justify-between text-xs font-mono text-zinc-500">
           <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold uppercase tracking-wider">
+            <span className="px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-semibold uppercase tracking-wider border border-zinc-200/60 dark:border-zinc-700/60">
               {post.category}
             </span>
             <span>•</span>
@@ -72,9 +71,9 @@ export const BlogDetail: React.FC = () => {
 
           <button
             onClick={handleShare}
-            className="flex items-center gap-1.5 px-2.5 py-1 text-xs rounded border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1 text-xs rounded-lg border border-zinc-200/80 dark:border-white/10 backdrop-blur-md bg-white/60 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-300 transition-colors shadow-xs"
           >
-            {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Share2 className="w-3.5 h-3.5" />}
+            {copiedLink ? <Check className="w-3.5 h-3.5 text-zinc-700 dark:text-zinc-300" /> : <Share2 className="w-3.5 h-3.5" />}
             <span>{copiedLink ? 'Copied' : 'Share'}</span>
           </button>
         </div>
@@ -89,86 +88,80 @@ export const BlogDetail: React.FC = () => {
           </p>
         )}
 
-        {/* Linked Project Banner (Bidirectional Project + Blog Connection) */}
+        {/* Linked Project Banner */}
         {linkedProject && (
-          <div className="p-3.5 rounded-lg bg-emerald-500/5 dark:bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-between gap-3 text-xs">
-            <div className="flex items-center gap-2 text-emerald-800 dark:text-emerald-300">
-              <Layers className="w-4 h-4 text-emerald-500 flex-shrink-0" />
+          <div className="p-4 rounded-2xl backdrop-blur-md bg-white/60 dark:bg-zinc-900/40 border border-zinc-200/60 dark:border-white/10 flex items-center justify-between gap-3 text-xs shadow-xs">
+            <div className="flex items-center gap-2 text-zinc-800 dark:text-zinc-200">
+              <Layers className="w-4 h-4 text-zinc-500 flex-shrink-0" />
               <span>
                 This article explores systems engineered for the <strong className="font-semibold">{linkedProject.name}</strong> project.
               </span>
             </div>
             <Link
               to={`/projects/${linkedProject.slug}`}
-              className="flex-shrink-0 flex items-center gap-1 font-semibold text-emerald-600 dark:text-emerald-400 hover:underline"
+              className="font-mono text-zinc-800 dark:text-zinc-200 hover:underline flex-shrink-0 font-medium"
             >
-              <span>View Case Study</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              View Project →
             </Link>
           </div>
         )}
       </div>
 
-      {/* Article Markdown Body */}
-      <article className="min-w-0">
+      {/* Main Article Content */}
+      <article className="space-y-6">
         <MarkdownRenderer content={post.content} />
       </article>
 
-      {/* Article Tags */}
-      <div className="pt-6 border-t border-zinc-200 dark:border-zinc-800 flex flex-wrap items-center gap-2">
-        <span className="text-xs font-mono text-zinc-400 mr-1">Tags:</span>
+      {/* Tags Footer */}
+      <div className="pt-6 border-t border-zinc-200/60 dark:border-zinc-800/60 flex flex-wrap items-center gap-2">
+        <span className="text-xs font-mono text-zinc-400 mr-2">Tags:</span>
         {post.tags.map((tag) => (
           <span
             key={tag}
-            className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-mono rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300"
+            className="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-mono rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 border border-zinc-200/60 dark:border-zinc-700/60"
           >
-            <Tag className="w-3 h-3 text-zinc-400" />
+            <Tag className="w-3 h-3" />
             {tag}
           </span>
         ))}
       </div>
 
-      {/* Author Card Signature */}
-      <div className="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#111111] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
+      {/* Author Bio Box */}
+      <div className="p-6 rounded-2xl backdrop-blur-md bg-white/60 dark:bg-zinc-900/40 border border-zinc-200/60 dark:border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
         <div className="space-y-1">
-          <div className="text-xs font-mono text-emerald-600 dark:text-emerald-400 font-semibold uppercase">
-            Written by
-          </div>
-          <div className="text-base font-bold text-zinc-900 dark:text-zinc-100">
-            {profile.name}
-          </div>
-          <p className="text-xs text-zinc-500 dark:text-zinc-400 max-w-md">
-            Full-stack developer and C++ programmer. Building systems and writing down what I learn along the way.
+          <h3 className="font-bold text-zinc-900 dark:text-zinc-100 text-sm">
+            Written by {profile.name}
+          </h3>
+          <p className="text-xs text-zinc-600 dark:text-zinc-400">
+            {profile.role} based in {profile.location}.
           </p>
         </div>
-
         <Link
           to="/about"
-          className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-medium rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+          className="text-xs font-mono font-semibold text-zinc-800 dark:text-zinc-200 hover:underline"
         >
-          <span>More about Himarghya</span>
-          <ArrowRight className="w-3 h-3" />
+          More about Himarghya →
         </Link>
       </div>
 
-      {/* More from Himarghya */}
+      {/* Related Reading Cards */}
       {otherPosts.length > 0 && (
-        <div className="space-y-4 pt-6 border-t border-zinc-200 dark:border-zinc-800">
-          <h3 className="text-base font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-            More from Himarghya
-          </h3>
+        <div className="space-y-4 pt-6 border-t border-zinc-200/60 dark:border-zinc-800/60">
+          <h2 className="text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+            Continue Reading
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {otherPosts.map((p) => (
+            {otherPosts.map((item) => (
               <Link
-                key={p.slug}
-                to={`/blog/${p.slug}`}
-                className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#111111] hover:border-emerald-500/60 transition-colors group space-y-1.5"
+                key={item.slug}
+                to={`/blog/${item.slug}`}
+                className="p-5 rounded-2xl backdrop-blur-md bg-white/60 dark:bg-zinc-900/40 border border-zinc-200/60 dark:border-white/10 hover:border-zinc-300 dark:hover:border-white/20 transition-all group space-y-1.5 shadow-sm"
               >
-                <div className="text-[11px] font-mono text-zinc-400">{p.category} • {p.readingTime}</div>
-                <h4 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
-                  {p.title}
-                </h4>
-                <p className="text-xs text-zinc-500 line-clamp-2">{p.excerpt}</p>
+                <div className="text-[11px] font-mono text-zinc-400">{item.category} • {item.readingTime}</div>
+                <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-600 dark:group-hover:text-zinc-300">
+                  {item.title}
+                </h3>
+                <p className="text-xs text-zinc-500 line-clamp-2">{item.excerpt}</p>
               </Link>
             ))}
           </div>

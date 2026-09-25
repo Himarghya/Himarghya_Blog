@@ -113,16 +113,16 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-black/60 backdrop-blur-sm transition-opacity"
+      className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-black/60 backdrop-blur-md transition-opacity"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-2xl bg-white dark:bg-[#121212] border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150"
+        className="w-full max-w-2xl backdrop-blur-2xl bg-white/85 dark:bg-[#121214]/85 border border-zinc-200/80 dark:border-white/10 rounded-2xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
         onKeyDown={handleKeyDown}
       >
         {/* Search Input Bar */}
-        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-zinc-200 dark:border-zinc-800">
+        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-zinc-200/80 dark:border-white/10">
           <Search className="w-5 h-5 text-zinc-400" />
           <input
             ref={inputRef}
@@ -146,7 +146,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
         </div>
 
         {/* Results List */}
-        <div className="max-h-96 overflow-y-auto p-2 divide-y divide-zinc-100 dark:divide-zinc-800/50">
+        <div className="max-h-96 overflow-y-auto p-2 divide-y divide-zinc-100 dark:divide-zinc-800/40">
           {filteredResults.length === 0 ? (
             <div className="p-8 text-center text-zinc-500 dark:text-zinc-400 text-sm">
               No results found for &ldquo;{query}&rdquo;. Try searching for &ldquo;Node.js&rdquo;, &ldquo;Redis&rdquo;, or &ldquo;PulseMesh&rdquo;.
@@ -166,22 +166,14 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
                   key={result.id}
                   onClick={() => handleSelect(result)}
                   onMouseEnter={() => setSelectedIndex(idx)}
-                  className={`flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg cursor-pointer transition-colors ${
+                  className={`flex items-center justify-between gap-3 px-3 py-2.5 rounded-xl cursor-pointer transition-colors ${
                     isSelected
-                      ? 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100'
-                      : 'text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800/50'
+                      ? 'bg-zinc-200/60 dark:bg-zinc-800/70 text-zinc-900 dark:text-zinc-100'
+                      : 'text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100/50 dark:hover:bg-zinc-800/40'
                   }`}
                 >
                   <div className="flex items-center gap-3 min-w-0">
-                    <div
-                      className={`p-1.5 rounded-md ${
-                        result.type === 'article'
-                          ? 'bg-amber-500/10 text-amber-500'
-                          : result.type === 'project'
-                          ? 'bg-emerald-500/10 text-emerald-500'
-                          : 'bg-indigo-500/10 text-indigo-500'
-                      }`}
-                    >
+                    <div className="p-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200/50 dark:border-zinc-700/50">
                       <Icon className="w-4 h-4" />
                     </div>
                     <div className="min-w-0">
@@ -211,7 +203,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
         </div>
 
         {/* Footer shortcuts */}
-        <div className="flex items-center justify-between px-4 py-2 bg-zinc-50 dark:bg-zinc-900/60 border-t border-zinc-200 dark:border-zinc-800 text-[11px] text-zinc-500 dark:text-zinc-400">
+        <div className="flex items-center justify-between px-4 py-2.5 bg-zinc-50/70 dark:bg-zinc-900/40 border-t border-zinc-200/80 dark:border-white/10 text-[11px] text-zinc-500 dark:text-zinc-400">
           <div className="flex items-center gap-2">
             <span className="flex items-center gap-1">
               <kbd className="px-1.5 py-0.5 bg-zinc-200/70 dark:bg-zinc-800 rounded font-mono">↑↓</kbd> to navigate
@@ -221,7 +213,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => 
             </span>
           </div>
           <span className="flex items-center gap-1">
-            <Sparkles className="w-3 h-3 text-emerald-500" /> Quick Jump
+            <Sparkles className="w-3 h-3 text-zinc-400" /> Quick Jump
           </span>
         </div>
       </div>

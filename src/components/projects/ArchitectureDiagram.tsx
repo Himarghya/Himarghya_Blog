@@ -14,10 +14,10 @@ export const ArchitectureDiagram: React.FC<ArchitectureDiagramProps> = ({
   const [activeStep, setActiveStep] = useState<number>(0);
 
   return (
-    <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#111111] p-5 sm:p-7 shadow-sm">
+    <div className="rounded-2xl border border-zinc-200/60 dark:border-white/10 backdrop-blur-md bg-white/60 dark:bg-zinc-900/40 p-5 sm:p-7 shadow-sm">
       <div className="flex items-center justify-between mb-4 pb-3 border-b border-zinc-100 dark:border-zinc-800/80">
         <div className="flex items-center gap-2 text-zinc-900 dark:text-zinc-100 font-semibold text-sm sm:text-base">
-          <Layers className="w-4 h-4 text-emerald-500" />
+          <Layers className="w-4 h-4 text-zinc-500" />
           <span>{projectName} System Flow & Architecture</span>
         </div>
         <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400">
@@ -37,10 +37,10 @@ export const ArchitectureDiagram: React.FC<ArchitectureDiagramProps> = ({
             <div key={idx}>
               <div
                 onClick={() => setActiveStep(idx)}
-                className={`p-4 rounded-lg border transition-all cursor-pointer ${
+                className={`p-4 rounded-xl border transition-all cursor-pointer backdrop-blur-sm ${
                   isSelected
-                    ? 'border-emerald-500/60 bg-emerald-500/5 dark:bg-emerald-500/10 shadow-sm'
-                    : 'border-zinc-200 dark:border-zinc-800/60 hover:border-zinc-300 dark:hover:border-zinc-700 bg-zinc-50/50 dark:bg-zinc-900/30'
+                    ? 'border-zinc-400 dark:border-white/30 bg-zinc-100/80 dark:bg-zinc-800/60 shadow-xs'
+                    : 'border-zinc-200/60 dark:border-zinc-800/60 hover:border-zinc-300 dark:hover:border-zinc-700 bg-zinc-50/50 dark:bg-zinc-900/30'
                 }`}
               >
                 <div className="flex items-start justify-between gap-4">
@@ -48,7 +48,7 @@ export const ArchitectureDiagram: React.FC<ArchitectureDiagramProps> = ({
                     <div className="flex items-center gap-2">
                       <span
                         className={`text-xs font-mono font-semibold ${
-                          isSelected ? 'text-emerald-600 dark:text-emerald-400' : 'text-zinc-700 dark:text-zinc-300'
+                          isSelected ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-700 dark:text-zinc-300'
                         }`}
                       >
                         {step.title}
@@ -59,7 +59,7 @@ export const ArchitectureDiagram: React.FC<ArchitectureDiagramProps> = ({
                     </p>
                   </div>
 
-                  <span className="flex-shrink-0 px-2 py-1 text-[11px] font-mono rounded bg-zinc-200/60 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">
+                  <span className="flex-shrink-0 px-2 py-1 text-[11px] font-mono rounded-lg bg-zinc-200/60 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300/60 dark:border-zinc-700">
                     {step.tech}
                   </span>
                 </div>
@@ -77,7 +77,7 @@ export const ArchitectureDiagram: React.FC<ArchitectureDiagramProps> = ({
 
       <div className="mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between text-[11px] text-zinc-500">
         <span className="flex items-center gap-1.5">
-          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" /> Fully decoupled execution layers
+          <CheckCircle2 className="w-3.5 h-3.5 text-zinc-400" /> Fully decoupled execution layers
         </span>
         <span className="font-mono">Deterministic State Isolation</span>
       </div>

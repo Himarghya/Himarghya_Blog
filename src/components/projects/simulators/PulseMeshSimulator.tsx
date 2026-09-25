@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Play, RotateCcw, AlertOctagon, CheckCircle2, ShieldAlert, Cpu } from 'lucide-react';
+import { RotateCcw, ShieldAlert, Cpu } from 'lucide-react';
 
 interface SimulatedJob {
   id: string;
@@ -29,7 +29,6 @@ export const PulseMeshSimulator: React.FC = () => {
         prev.map((job) => {
           if (job.status === 'ACTIVE') {
             if (job.leaseTtl <= 1) {
-              // Auto-complete or lease expire
               return { ...job, status: 'COMPLETED', leaseTtl: 0, workerId: null };
             }
             return { ...job, leaseTtl: job.leaseTtl - 1 };
@@ -88,33 +87,32 @@ export const PulseMeshSimulator: React.FC = () => {
   };
 
   return (
-    <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-[#0F0F11] text-zinc-100 p-4 sm:p-5 font-mono text-xs space-y-4">
+    <div className="rounded-2xl border border-zinc-200/80 dark:border-white/10 backdrop-blur-xl bg-zinc-950/80 text-zinc-100 p-4 sm:p-5 font-mono text-xs space-y-4 shadow-xl">
       {/* Title & Controls */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-800/80 pb-3">
         <div className="flex items-center gap-2">
-          <Cpu className="w-4 h-4 text-emerald-400" />
+          <Cpu className="w-4 h-4 text-zinc-400" />
           <span className="font-bold text-zinc-100 tracking-wide">PulseMesh Live Orchestration Simulator</span>
-          <span className="px-1.5 py-0.2 bg-emerald-500/20 text-emerald-400 text-[10px] rounded">ATOMIC LEASES</span>
+          <span className="px-1.5 py-0.5 bg-zinc-800 text-zinc-300 text-[10px] rounded border border-zinc-700">ATOMIC LEASES</span>
         </div>
 
         <div className="flex items-center gap-2">
           <button
             onClick={dispatchNewJob}
-            className="flex items-center gap-1 px-2.5 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded transition-colors text-[11px] font-semibold"
+            className="px-2.5 py-1 bg-zinc-100 dark:bg-zinc-100 text-zinc-900 rounded-lg font-semibold hover:opacity-90 transition-opacity text-[11px]"
           >
-            <Play className="w-3 h-3" />
-            <span>Dispatch Job</span>
+            + Dispatch Job
           </button>
           <button
             onClick={simulateWorkerCrash}
-            className="flex items-center gap-1 px-2.5 py-1 bg-red-600/80 hover:bg-red-500 text-white rounded transition-colors text-[11px]"
+            className="flex items-center gap-1 px-2.5 py-1 bg-zinc-800 hover:bg-zinc-700 text-zinc-200 rounded-lg transition-colors text-[11px] border border-zinc-700"
           >
-            <AlertOctagon className="w-3 h-3" />
+            <ShieldAlert className="w-3 h-3 text-zinc-400" />
             <span>Kill Worker 1</span>
           </button>
           <button
             onClick={resetSimulation}
-            className="p-1 text-zinc-400 hover:text-zinc-200 rounded transition-colors"
+            className="p-1 text-zinc-400 hover:text-zinc-200 rounded"
             title="Reset"
           >
             <RotateCcw className="w-3.5 h-3.5" />
@@ -122,55 +120,50 @@ export const PulseMeshSimulator: React.FC = () => {
         </div>
       </div>
 
-      {/* Live Jobs Table */}
+      {/* Active Jobs Grid */}
       <div className="space-y-2">
-        <div className="grid grid-cols-5 text-[10px] text-zinc-500 uppercase tracking-wider font-semibold border-b border-zinc-800/60 pb-1">
-          <span>Job ID</span>
-          <span>Claimed By</span>
-          <span>Status</span>
-          <span>Lease TTL</span>
-          <span>Fencing Token</span>
+        <div className="text-[11px] text-zinc-400 uppercase tracking-wider font-semibold">
+          Active Job Queue (Redis Key-Space)
         </div>
-
-        <div className="space-y-1.5">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
           {jobs.map((job) => (
             <div
               key={job.id}
-              className="grid grid-cols-5 items-center p-2 rounded bg-[#16161A] border border-zinc-800/80 text-[11px]"
+              className="p-3 rounded-xl backdrop-blur-sm bg-zinc-900/60 border border-zinc-800/80 space-y-1.5"
             >
-              <span className="font-bold text-zinc-200">{job.id}</span>
-              <span className="text-zinc-400">{job.workerId || 'None (Queue)'}</span>
-              <div>
-                <span
-                  className={`px-1.5 py-0.5 rounded text-[10px] font-semibold ${
-                    job.status === 'ACTIVE'
-                      ? 'bg-emerald-500/20 text-emerald-400'
-                      : job.status === 'COMPLETED'
-                      ? 'bg-blue-500/20 text-blue-400'
-                      : job.status === 'FAILED'
-                      ? 'bg-red-500/20 text-red-400'
-                      : 'bg-zinc-700 text-zinc-300'
-                  }`}
-                >
+              <div className="flex items-center justify-between">
+                <span className="font-bold text-zinc-200">{job.id}</span>
+                <span className="px-1.5 py-0.5 rounded text-[10px] bg-zinc-800 text-zinc-300 border border-zinc-700">
                   {job.status}
                 </span>
               </div>
-              <span className="text-amber-400">{job.leaseTtl > 0 ? `${job.leaseTtl}s` : '--'}</span>
-              <span className="text-zinc-400">#{job.fencingToken}</span>
+              <div className="text-[11px] text-zinc-400">
+                Worker: <span className="text-zinc-300">{job.workerId || 'none'}</span>
+              </div>
+              <div className="text-[11px] text-zinc-400">
+                Fencing Token: <span className="text-zinc-200 font-semibold">#{job.fencingToken}</span>
+              </div>
+              <div className="text-[11px] text-zinc-400">
+                Lease TTL: <span className="text-zinc-200 font-semibold">{job.leaseTtl}s</span>
+              </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Terminal Output Log */}
-      <div className="p-2.5 rounded bg-black/50 border border-zinc-800 space-y-1 text-[11px]">
-        <div className="text-[10px] text-zinc-500 uppercase">Engine Event Log</div>
-        {logs.map((log, idx) => (
-          <div key={idx} className="text-zinc-400 flex items-start gap-1.5">
-            <span className="text-emerald-500 font-bold">&gt;</span>
-            <span className={log.includes('CRITICAL') ? 'text-red-400' : 'text-zinc-300'}>{log}</span>
-          </div>
-        ))}
+      {/* Real-time Event Stream */}
+      <div className="space-y-1.5 pt-2 border-t border-zinc-800/80">
+        <div className="text-[11px] text-zinc-500 uppercase tracking-wider">
+          Telemetry Event Log
+        </div>
+        <div className="p-3 rounded-xl bg-black/50 border border-zinc-800/60 space-y-1 text-[11px] text-zinc-400 max-h-24 overflow-y-auto">
+          {logs.map((log, i) => (
+            <div key={i} className="leading-tight font-mono">
+              <span className="text-zinc-600 mr-2">&gt;</span>
+              {log}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

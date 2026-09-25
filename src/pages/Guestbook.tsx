@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MessageSquare, Send, User, Sparkles, Heart } from 'lucide-react';
-import { profile } from '../data/profile';
+import { MessageSquare, Send, Sparkles } from 'lucide-react';
 
 interface GuestEntry {
   id: string;
@@ -58,8 +57,8 @@ export const Guestbook: React.FC = () => {
   return (
     <div className="max-w-3xl mx-auto space-y-10 pb-16 pt-6">
       {/* Header */}
-      <div className="space-y-3 border-b border-zinc-200 dark:border-zinc-800 pb-6">
-        <div className="flex items-center gap-2 text-xs font-mono text-emerald-600 dark:text-emerald-400">
+      <div className="space-y-3 border-b border-zinc-200/60 dark:border-zinc-800/60 pb-6">
+        <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
           <MessageSquare className="w-4 h-4" />
           <span>COMMUNITY & GUESTBOOK</span>
         </div>
@@ -72,9 +71,9 @@ export const Guestbook: React.FC = () => {
       </div>
 
       {/* Sign Form */}
-      <div className="p-6 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#111111] space-y-4 shadow-sm">
+      <div className="p-6 sm:p-8 rounded-2xl backdrop-blur-md bg-white/60 dark:bg-zinc-900/40 border border-zinc-200/60 dark:border-white/10 space-y-4 shadow-sm">
         <h2 className="text-base font-bold text-zinc-900 dark:text-zinc-100 flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-emerald-500" />
+          <Sparkles className="w-4 h-4 text-zinc-400" />
           <span>Sign the Guestbook</span>
         </h2>
 
@@ -85,7 +84,7 @@ export const Guestbook: React.FC = () => {
             placeholder="Your Name (e.g. Alex)"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full px-3.5 py-2 text-xs sm:text-sm rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+            className="w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-xl border border-zinc-200/80 dark:border-white/10 backdrop-blur-md bg-white/50 dark:bg-zinc-900/50 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:border-zinc-400 dark:focus:border-white/20 shadow-xs"
           />
 
           <textarea
@@ -94,21 +93,21 @@ export const Guestbook: React.FC = () => {
             placeholder="Leave a friendly message, thought, or greeting..."
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-1 focus:ring-emerald-500 resize-none"
+            className="w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-xl border border-zinc-200/80 dark:border-white/10 backdrop-blur-md bg-white/50 dark:bg-zinc-900/50 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:border-zinc-400 dark:focus:border-white/20 resize-none shadow-xs"
           />
 
           <button
             type="submit"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-semibold text-xs sm:text-sm hover:opacity-90 transition-opacity"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl backdrop-blur-md bg-zinc-900/90 dark:bg-zinc-100/90 text-white dark:text-zinc-900 font-semibold text-xs sm:text-sm hover:bg-zinc-800 dark:hover:bg-white transition-all shadow-sm"
           >
             <Send className="w-3.5 h-3.5" />
-            <span>Sign Guestbook</span>
+            <span>Post Entry</span>
           </button>
         </form>
       </div>
 
-      {/* Entries List */}
-      <div className="space-y-3">
+      {/* Guest Entries List */}
+      <div className="space-y-4">
         <h2 className="text-sm font-mono font-semibold uppercase tracking-wider text-zinc-500">
           Messages ({entries.length})
         </h2>
@@ -117,19 +116,20 @@ export const Guestbook: React.FC = () => {
           {entries.map((entry) => (
             <div
               key={entry.id}
-              className="p-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#111111] space-y-1.5 shadow-sm"
+              className="p-5 rounded-2xl backdrop-blur-md bg-white/60 dark:bg-zinc-900/40 border border-zinc-200/60 dark:border-white/10 space-y-2 shadow-sm"
             >
-              <div className="flex items-center justify-between text-xs">
-                <div className="flex items-center gap-2 font-semibold text-zinc-900 dark:text-zinc-100">
-                  <User className="w-3.5 h-3.5 text-zinc-400" />
-                  <span>{entry.name}</span>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="font-bold text-xs sm:text-sm text-zinc-900 dark:text-zinc-100">
+                    {entry.name}
+                  </span>
                   {entry.badge && (
-                    <span className="px-1.5 py-0.2 text-[10px] font-mono rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold">
+                    <span className="px-2 py-0.5 text-[10px] font-mono rounded-full bg-zinc-200/70 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-200 font-semibold border border-zinc-300 dark:border-zinc-700">
                       {entry.badge}
                     </span>
                   )}
                 </div>
-                <span className="font-mono text-zinc-400 text-[11px]">{entry.date}</span>
+                <span className="text-xs font-mono text-zinc-400">{entry.date}</span>
               </div>
 
               <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">

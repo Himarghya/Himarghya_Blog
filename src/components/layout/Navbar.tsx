@@ -57,9 +57,9 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <header
-        className={`sticky top-0 z-40 w-full transition-all duration-200 ${
+        className={`sticky top-0 z-40 w-full transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/80 dark:bg-[#0A0A0A]/80 backdrop-blur-md border-b border-zinc-200/80 dark:border-zinc-800/80 shadow-sm'
+            ? 'backdrop-blur-xl bg-white/70 dark:bg-[#09090B]/70 border-b border-zinc-200/60 dark:border-white/10 shadow-sm'
             : 'bg-transparent border-b border-transparent'
         }`}
       >
@@ -79,18 +79,18 @@ export const Navbar: React.FC = () => {
             </div>
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 lg:gap-1.5">
+          {/* Desktop Navigation Links (Glassmorphism Capsule) */}
+          <nav className="hidden md:flex items-center gap-1 p-1 rounded-full backdrop-blur-md bg-zinc-100/70 dark:bg-zinc-900/60 border border-zinc-200/60 dark:border-white/10 shadow-xs">
             {navLinks.map((link) => {
               const active = isActive(link.path);
               return (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`px-3 py-1.5 text-sm rounded-md transition-colors ${
+                  className={`px-3 py-1.5 text-xs font-medium rounded-full transition-all ${
                     active
-                      ? 'text-zinc-900 dark:text-zinc-100 font-medium bg-zinc-100 dark:bg-zinc-800/70'
-                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-zinc-100/60 dark:hover:bg-zinc-800/40'
+                      ? 'text-zinc-900 dark:text-zinc-100 font-semibold bg-white dark:bg-zinc-800 shadow-xs'
+                      : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-white/50 dark:hover:bg-zinc-800/40'
                   }`}
                 >
                   {link.name}
@@ -105,11 +105,11 @@ export const Navbar: React.FC = () => {
             <button
               onClick={() => setSearchOpen(true)}
               aria-label="Search"
-              className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-zinc-500 dark:text-zinc-400 bg-zinc-100 dark:bg-zinc-800/80 hover:bg-zinc-200 dark:hover:bg-zinc-700/80 rounded-md border border-zinc-200 dark:border-zinc-700 transition-colors"
+              className="flex items-center gap-2 px-2.5 py-1.5 text-xs text-zinc-600 dark:text-zinc-400 backdrop-blur-md bg-white/60 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg border border-zinc-200/80 dark:border-white/10 transition-colors shadow-xs"
             >
               <Search className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Search</span>
-              <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono bg-white dark:bg-zinc-900 rounded border border-zinc-300 dark:border-zinc-700">
+              <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono bg-zinc-100 dark:bg-zinc-800 rounded border border-zinc-200 dark:border-zinc-700">
                 ⌘K
               </kbd>
             </button>
@@ -118,10 +118,10 @@ export const Navbar: React.FC = () => {
             <button
               onClick={toggleTheme}
               aria-label="Toggle theme"
-              className="p-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-md transition-colors"
+              className="p-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 backdrop-blur-md bg-white/60 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg border border-zinc-200/80 dark:border-white/10 transition-colors"
             >
               {resolvedTheme === 'dark' ? (
-                <Sun className="w-4 h-4 text-amber-400" />
+                <Sun className="w-4 h-4 text-zinc-300" />
               ) : (
                 <Moon className="w-4 h-4 text-zinc-700" />
               )}
@@ -133,7 +133,7 @@ export const Navbar: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub Profile"
-              className="p-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-md transition-colors"
+              className="p-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 backdrop-blur-md bg-white/60 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg border border-zinc-200/80 dark:border-white/10 transition-colors"
             >
               <Github className="w-4 h-4" />
             </a>
@@ -143,7 +143,7 @@ export const Navbar: React.FC = () => {
               href={socialLinks.resume}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden lg:flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded-md transition-colors"
+              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-zinc-800 dark:text-zinc-200 hover:text-zinc-950 dark:hover:text-white backdrop-blur-md bg-white/60 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg border border-zinc-200/80 dark:border-white/10 transition-colors"
             >
               <FileText className="w-3.5 h-3.5" />
               <span>Resume</span>
@@ -153,7 +153,7 @@ export const Navbar: React.FC = () => {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Open menu"
-              className="p-2 md:hidden text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-md"
+              className="p-2 md:hidden text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-800"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -162,7 +162,7 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile Menu Drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden px-4 pt-2 pb-6 bg-white/95 dark:bg-[#0A0A0A]/95 backdrop-blur-lg border-b border-zinc-200 dark:border-zinc-800 animate-in slide-in-from-top duration-200">
+          <div className="md:hidden px-4 pt-2 pb-6 backdrop-blur-2xl bg-white/90 dark:bg-[#09090B]/90 border-b border-zinc-200/80 dark:border-white/10 animate-in slide-in-from-top duration-200">
             <div className="flex flex-col gap-1">
               {navLinks.map((link) => {
                 const active = isActive(link.path);
@@ -172,8 +172,8 @@ export const Navbar: React.FC = () => {
                     to={link.path}
                     className={`px-3 py-2.5 text-sm rounded-lg transition-colors ${
                       active
-                        ? 'text-zinc-900 dark:text-zinc-100 font-semibold bg-zinc-100 dark:bg-zinc-800'
-                        : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-50 dark:hover:bg-zinc-800/50'
+                        ? 'text-zinc-900 dark:text-zinc-100 font-semibold bg-zinc-200/70 dark:bg-zinc-800/80'
+                        : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100/50 dark:hover:bg-zinc-800/40'
                     }`}
                   >
                     {link.name}
@@ -181,21 +181,21 @@ export const Navbar: React.FC = () => {
                 );
               })}
 
-              <div className="pt-3 mt-2 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between">
+              <div className="pt-3 mt-2 border-t border-zinc-200/60 dark:border-zinc-800 flex items-center justify-between">
                 <a
                   href={socialLinks.resume}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-xs text-zinc-600 dark:text-zinc-300 font-medium px-3 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-md"
+                  className="flex items-center gap-1.5 text-xs text-zinc-800 dark:text-zinc-200 font-medium px-3 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-700"
                 >
                   <FileText className="w-3.5 h-3.5" />
-                  <span>Resume →</span>
+                  <span>Resume</span>
                 </a>
                 <a
                   href={socialLinks.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-xs text-zinc-600 dark:text-zinc-300 px-3 py-2"
+                  className="flex items-center gap-1.5 text-xs text-zinc-600 dark:text-zinc-400 px-3 py-2 hover:text-zinc-900 dark:hover:text-white"
                 >
                   <Github className="w-3.5 h-3.5" />
                   <span>GitHub</span>

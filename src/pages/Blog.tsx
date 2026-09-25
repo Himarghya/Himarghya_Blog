@@ -22,8 +22,8 @@ export const Blog: React.FC = () => {
   return (
     <div className="max-w-3xl mx-auto space-y-10 pb-16 pt-6">
       {/* Header */}
-      <div className="space-y-3 border-b border-zinc-200 dark:border-zinc-800 pb-6">
-        <div className="flex items-center gap-2 text-xs font-mono text-emerald-600 dark:text-emerald-400">
+      <div className="space-y-3 border-b border-zinc-200/60 dark:border-zinc-800/60 pb-6">
+        <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
           <BookOpen className="w-4 h-4" />
           <span>DEVELOPER JOURNAL & NOTES</span>
         </div>
@@ -43,7 +43,7 @@ export const Blog: React.FC = () => {
               placeholder="Search articles by title, keyword, or technology..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 text-xs sm:text-sm rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#111111] text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              className="w-full pl-9 pr-4 py-2.5 text-xs sm:text-sm rounded-xl border border-zinc-200/80 dark:border-white/10 backdrop-blur-md bg-white/60 dark:bg-zinc-900/50 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none focus:border-zinc-400 dark:focus:border-white/20 shadow-xs"
             />
           </div>
 
@@ -52,10 +52,10 @@ export const Blog: React.FC = () => {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1 text-xs font-mono rounded-lg transition-colors ${
+                className={`px-3 py-1 text-xs font-mono rounded-xl backdrop-blur-md transition-all ${
                   selectedCategory === cat
-                    ? 'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-semibold'
-                    : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200'
+                    ? 'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-semibold shadow-xs'
+                    : 'bg-white/60 dark:bg-zinc-900/60 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 border border-zinc-200/60 dark:border-white/5'
                 }`}
               >
                 {cat}
@@ -66,7 +66,7 @@ export const Blog: React.FC = () => {
       </div>
 
       {/* Articles Listing */}
-      <div className="divide-y divide-zinc-200 dark:divide-zinc-800">
+      <div className="divide-y divide-zinc-200/60 dark:divide-zinc-800/60">
         {filteredPosts.length === 0 ? (
           <div className="py-12 text-center text-zinc-500 dark:text-zinc-400 text-sm">
             No articles found matching your criteria.
@@ -84,14 +84,14 @@ export const Blog: React.FC = () => {
                   <Clock className="w-3 h-3" /> {post.readingTime}
                 </span>
                 <span>•</span>
-                <span className="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium">
+                <span className="px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-medium border border-zinc-200/40 dark:border-zinc-700/40">
                   {post.category}
                 </span>
               </div>
 
               {/* Title & Excerpt */}
               <Link to={`/blog/${post.slug}`} className="block group space-y-1.5">
-                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
                   {post.title}
                 </h2>
                 <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2">
@@ -104,7 +104,7 @@ export const Blog: React.FC = () => {
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-mono rounded bg-zinc-100 dark:bg-zinc-800/60 text-zinc-500 dark:text-zinc-400"
+                    className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-mono rounded bg-zinc-100/80 dark:bg-zinc-800/60 text-zinc-500 dark:text-zinc-400 border border-zinc-200/40 dark:border-zinc-700/40"
                   >
                     <Tag className="w-2.5 h-2.5" />
                     {tag}

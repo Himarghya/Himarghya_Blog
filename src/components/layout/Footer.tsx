@@ -6,7 +6,7 @@ import { socialLinks } from '../../data/social';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="mt-20 border-t border-zinc-200 dark:border-zinc-800/80 bg-zinc-50/50 dark:bg-black/40 transition-colors">
+    <footer className="mt-20 border-t border-zinc-200/60 dark:border-white/10 backdrop-blur-xl bg-white/40 dark:bg-zinc-950/40 transition-colors">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           {/* Brand & Personal Signature */}
@@ -15,8 +15,8 @@ export const Footer: React.FC = () => {
               <span className="font-semibold text-zinc-900 dark:text-zinc-100">
                 {profile.name}
               </span>
-              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 text-[11px] font-mono text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 rounded-full">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 status-beacon" />
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 text-[11px] font-mono text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800/80 rounded-full border border-zinc-200/60 dark:border-zinc-700/60">
+                <span className="w-1.5 h-1.5 rounded-full bg-zinc-400 dark:bg-zinc-400" />
                 {profile.status}
               </span>
             </div>
@@ -27,28 +27,28 @@ export const Footer: React.FC = () => {
 
           {/* Quick Nav Links */}
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-zinc-600 dark:text-zinc-400">
-            <Link to="/about" className="hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
+            <Link to="/about" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
               About
             </Link>
-            <Link to="/projects" className="hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
+            <Link to="/projects" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
               Projects
             </Link>
-            <Link to="/blog" className="hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
+            <Link to="/blog" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
               Writing
             </Link>
-            <Link to="/journey" className="hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
+            <Link to="/journey" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
               Journey
             </Link>
-            <Link to="/now" className="hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
+            <Link to="/now" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
               Now
             </Link>
-            <Link to="/uses" className="hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
+            <Link to="/uses" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
               Uses
             </Link>
-            <Link to="/guestbook" className="hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
+            <Link to="/guestbook" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
               Guestbook
             </Link>
-            <Link to="/contact" className="hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
+            <Link to="/contact" className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors">
               Contact
             </Link>
           </div>
