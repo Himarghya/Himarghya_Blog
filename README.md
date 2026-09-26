@@ -86,6 +86,20 @@ npm run preview
 
 ---
 
+## Deployment to Render
+
+This project is configured for 1-click / automated deployment on **Render** as a Static Site:
+
+- **Build Command**: `npm run build`
+- **Publish Directory**: `dist`
+- **Routing**: SPA routing is pre-configured via `render.yaml` and `public/_redirects` (rewriting all requests to `/index.html`).
+
+### Deploy via Blueprint / Git:
+1. Push this repository to GitHub.
+2. In the [Render Dashboard](https://dashboard.render.com/), click **New** > **Static Site** (or **Blueprint**).
+3. Connect your `Himarghya_Blog` repository.
+4. Render will automatically detect `render.yaml` and deploy the static site.
+
 ## How to Add New Content
 
 ### Adding a Blog Post
