@@ -14,7 +14,7 @@
   <b>A high-performance personal portfolio, technical engineering blog, and interactive systems showcase for Himarghya Das.</b>
 </p>
 
-[Live Demo](https://himarghya.dev) • [Case Studies](#-featured-case-studies) • [Technical Articles](#-technical-blog--journal) • [Render Deployment](#-deployment-to-render)
+[Live Demo](https://himarghya-blog.onrender.com) • [Case Studies](#-featured-case-studies) • [Technical Articles](#-technical-blog--journal) • [Render Deployment](#-deployment-to-render)
 
 ---
 
@@ -308,7 +308,7 @@ Open [`src/data/now.ts`](./src/data/now.ts) to update your current month's readi
 ## 👤 Author & Connect
 
 **Himarghya Das**
-- **Website**: [himarghya.dev](https://himarghya.dev)
+- **Website / Live Blog**: [himarghya-blog.onrender.com](https://himarghya-blog.onrender.com)
 - **GitHub**: [@Himarghya](https://github.com/Himarghya)
 - **LinkedIn**: [Himarghya Das](https://linkedin.com/in/himarghya)
 - **Email**: [contact@himarghya.dev](mailto:contact@himarghya.dev)
