@@ -1,45 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, Sparkles, Terminal, Code2, Cpu, RefreshCw } from 'lucide-react';
+import { ArrowRight, BookOpen, Sparkles, Terminal, Code2, Cpu } from 'lucide-react';
 import { profile } from '../data/profile';
 
 export const About: React.FC = () => {
-  const [avatarMode, setAvatarMode] = useState<'real' | 'pixel'>('pixel');
-
   return (
     <div className="max-w-3xl mx-auto space-y-12 pb-16 pt-6">
       {/* Header */}
-      <div className="space-y-6 border-b border-slate-200/80 dark:border-zinc-800/80 pb-8">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-          <div className="relative group shrink-0">
-            <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl overflow-hidden glass-card border border-slate-200/80 dark:border-zinc-800 relative shadow-sm">
-              <img
-                src={avatarMode === 'pixel' ? '/profile/himarghya-pixel.png' : '/profile/himarghya-portrait.jpg'}
-                alt="Himarghya Das"
-                className={`w-full h-full object-cover transition-all duration-300 ${avatarMode === 'pixel' ? 'scale-105' : ''}`}
-                style={avatarMode === 'pixel' ? { imageRendering: 'pixelated' } : undefined}
-              />
-            </div>
-            {/* Mode Switcher Pill */}
-            <button
-              onClick={() => setAvatarMode((prev) => (prev === 'pixel' ? 'real' : 'pixel'))}
-              className="mt-2 w-full py-1 px-2 text-[10px] font-mono rounded-lg glass-card text-slate-700 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
-              title="Toggle avatar style"
-            >
-              <RefreshCw className="w-2.5 h-2.5" />
-              <span>{avatarMode === 'pixel' ? '16-Bit Pixel' : 'Photo'}</span>
-            </button>
-          </div>
-
-          <div className="space-y-2">
-            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-zinc-50">
-              A little more about me.
-            </h1>
-            <p className="text-base text-slate-600 dark:text-zinc-400 leading-relaxed font-mono text-xs sm:text-sm">
-              Himarghya Das — Full Stack Developer • C++ Programmer • Problem Solver
-            </p>
-          </div>
-        </div>
+      <div className="space-y-4 border-b border-slate-200/80 dark:border-zinc-800/80 pb-8">
+        <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-zinc-50">
+          A little more about me.
+        </h1>
+        <p className="text-base text-slate-600 dark:text-zinc-400 leading-relaxed font-mono text-xs sm:text-sm">
+          Himarghya Das — Full Stack Developer • C++ Programmer • Problem Solver
+        </p>
       </div>
 
       {/* 1. Who I Am */}
